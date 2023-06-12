@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+    .geoloc {
+        margin-top: 55px;
+    }
+
+</style>
+
+<body>
+
+
+    <div class="backgroundcolor">
+        <h3>Changing BackGround color</h3>
+        <button onclick="red()">Red</button>
+        <button onclick="blue()">blue</button>
+        <button onclick="yellow()">yellow</button>
+        <button onclick="deflt()">Default</button>
+    </div>
+<!-- ------------------------------------ -->
+
+    <div class="geoloc">
+        <h3>Geolocation</h3>
+        <button type="btn button1 " onclick="getIPAddress()">Get ip</button>
+        <button type="btn btn-success " onclick="getLocation()">Get location</button>
+    </div>
+    <p id="color"></p>
+<!-- -------------------------------------------- -->
+
+<!-- ----------------------------------------------- -->
+
+
+    <script>
+        function red() {
+            document.body.style.backgroundColor = "red";
+
+        }
+        function blue() {
+            document.body.style.backgroundColor = "blue";
+        }
+        function yellow() {
+            document.body.style.backgroundColor = "yellow";
+        }
+        function deflt() {
+            document.body.style.backgroundColor = "white";
+        }
+        // ------------------------------------------------
+
+        function getLocation() {
+
+            navigator.geolocation.getCurrentPosition(showPosition);
+
+
+            function showPosition(position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+
+                console.log("Latitude: " + latitude);
+                console.log("Longitude: " + longitude);
+
+                // You can perform further operations with the latitude and longitude here
+            }
+
+        }
+
+        getLocation();
+        // -----------------------------------------
+
+        function getIPAddress() {
+
+
+            fetch("https://api.ipify.org?format=json")
+                .then(response => response.json())
+                .then(ip => {console.log("172.16.4.247")
+                })
+                .catch(error => {
+                    console.log("Error retrieving IP address:", error);
+                });
+        }
+
+        getIPAddress();
+
+// -------------------------------------------------
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
